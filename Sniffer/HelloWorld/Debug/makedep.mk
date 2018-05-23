@@ -6,6 +6,10 @@ src\ASF\avr32\drivers\flashc\flashc.c
 
 src\ASF\avr32\drivers\gpio\gpio.c
 
+src\include\Timer2018.c
+
+src\include\USB2018.c
+
 src\ASF\avr32\drivers\pm\pm_uc3c.c
 
 src\ASF\avr32\drivers\pm\power_clocks_lib.c

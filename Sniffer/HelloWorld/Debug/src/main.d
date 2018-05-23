@@ -108,7 +108,7 @@ src/main.d src/main.o src/main.o: ../src/main.c ../src/asf.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr32\avr32-gnu-toolchain\bin\../lib/gcc/avr32/4.4.7/../../../../avr32/include/sys/features.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr32\avr32-gnu-toolchain\bin\../lib/gcc/avr32/4.4.7/../../../../avr32/include/sys/stdio.h \
  ../src/ASF/common/services/usb/udc/udc.h \
- ../src/ASF/common/services/usb/udc/udd.h
+ ../src/ASF/common/services/usb/udc/udd.h ../src/USB2018.h
 
 ../src/asf.h:
 
@@ -337,3 +337,5 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr32\avr32-gnu-toolchain\bi
 ../src/ASF/common/services/usb/udc/udc.h:
 
 ../src/ASF/common/services/usb/udc/udd.h:
+
+../src/USB2018.h:
