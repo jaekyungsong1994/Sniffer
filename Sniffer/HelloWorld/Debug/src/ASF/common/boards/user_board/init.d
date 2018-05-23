@@ -89,6 +89,7 @@ src/ASF/common/boards/user_board/init.d \
  ../src/ASF/common/services/sleepmgr/uc3/sleepmgr.h \
  ../src/config/conf_sleepmgr.h \
  ../src/ASF/common/services/sleepmgr/uc3/sleepmgr.h \
+ ../src/ASF/avr32/drivers/tc/tc.h \
  ../src/ASF/avr32/drivers/usbc/usbc_device.h \
  ../src/ASF/avr32/drivers/usbc/usbc_otg.h \
  ../src/ASF/common/services/usb/class/cdc/usb_protocol_cdc.h \
@@ -293,6 +294,8 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr32\avr32-gnu-toolchain\bi
 ../src/config/conf_sleepmgr.h:
 
 ../src/ASF/common/services/sleepmgr/uc3/sleepmgr.h:
+
+../src/ASF/avr32/drivers/tc/tc.h:
 
 ../src/ASF/avr32/drivers/usbc/usbc_device.h:
 

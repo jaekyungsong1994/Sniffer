@@ -94,6 +94,9 @@
 // From module: System Clock Control - UC3 C implementation
 #include <sysclk.h>
 
+// From module: TC - Timer/Counter
+#include <tc.h>
+
 // From module: USB - Universial Serial Bus driver (with sleep manager)
 #include <usbc_device.h>
 

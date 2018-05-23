@@ -12,6 +12,8 @@ src\ASF\avr32\drivers\pm\power_clocks_lib.c
 
 src\ASF\avr32\drivers\scif\scif_uc3c.c
 
+src\ASF\avr32\drivers\tc\tc.c
+
 src\ASF\avr32\drivers\usbc\usbc_device.c
 
 src\ASF\common\services\clock\uc3c\osc.c
