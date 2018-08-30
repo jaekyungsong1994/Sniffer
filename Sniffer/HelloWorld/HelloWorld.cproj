@@ -429,7 +429,7 @@
     <Folder Include="src\ASF\common\utils\stdio\" />
     <Folder Include="src\ASF\common\utils\stdio\stdio_usb\" />
     <Folder Include="src\config\" />
-    <Folder Include="src\include\" />
+    <Folder Include="src\myfiles" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\ASF\avr32\drivers\flashc\flashc.c">
@@ -438,10 +438,25 @@
     <Compile Include="src\ASF\avr32\drivers\gpio\gpio.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\include\Timer2018.c">
+    <Compile Include="src\GPIO2018.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\include\USB2018.c">
+    <Compile Include="src\Menu2018.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\myfiles\GPIO2018.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\myfiles\main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\myfiles\Menu2018.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\myfiles\Timer2018.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\myfiles\USB2018.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\Timer2018.h">
@@ -676,9 +691,6 @@
       <SubType>compile</SubType>
     </None>
     <Compile Include="src\ASF\common\utils\stdio\write.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="src\main.c">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

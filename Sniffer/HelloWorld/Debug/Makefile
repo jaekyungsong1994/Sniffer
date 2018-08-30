@@ -70,15 +70,18 @@ SUBDIRS :=  \
 ../src/ASF/common/utils/stdio/ \
 ../src/ASF/common/utils/stdio/stdio_usb/ \
 ../src/config/ \
-../src/include/
+../src/myfiles
 
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../src/ASF/avr32/drivers/flashc/flashc.c \
 ../src/ASF/avr32/drivers/gpio/gpio.c \
-../src/include/Timer2018.c \
-../src/include/USB2018.c \
+../src/myfiles/GPIO2018.c \
+../src/myfiles/main.c \
+../src/myfiles/Menu2018.c \
+../src/myfiles/Timer2018.c \
+../src/myfiles/USB2018.c \
 ../src/ASF/avr32/drivers/pm/pm_uc3c.c \
 ../src/ASF/avr32/drivers/pm/power_clocks_lib.c \
 ../src/ASF/avr32/drivers/scif/scif_uc3c.c \
@@ -95,8 +98,7 @@ C_SRCS +=  \
 ../src/ASF/common/services/usb/udc/udc.c \
 ../src/ASF/common/utils/stdio/read.c \
 ../src/ASF/common/utils/stdio/stdio_usb/stdio_usb.c \
-../src/ASF/common/utils/stdio/write.c \
-../src/main.c
+../src/ASF/common/utils/stdio/write.c
 
 
 PREPROCESSING_SRCS +=  \
@@ -111,8 +113,11 @@ ASM_SRCS +=
 OBJS +=  \
 src/ASF/avr32/drivers/flashc/flashc.o \
 src/ASF/avr32/drivers/gpio/gpio.o \
-src/include/Timer2018.o \
-src/include/USB2018.o \
+src/myfiles/GPIO2018.o \
+src/myfiles/main.o \
+src/myfiles/Menu2018.o \
+src/myfiles/Timer2018.o \
+src/myfiles/USB2018.o \
 src/ASF/avr32/drivers/pm/pm_uc3c.o \
 src/ASF/avr32/drivers/pm/power_clocks_lib.o \
 src/ASF/avr32/drivers/scif/scif_uc3c.o \
@@ -132,14 +137,16 @@ src/ASF/common/services/usb/class/cdc/device/udi_cdc_desc.o \
 src/ASF/common/services/usb/udc/udc.o \
 src/ASF/common/utils/stdio/read.o \
 src/ASF/common/utils/stdio/stdio_usb/stdio_usb.o \
-src/ASF/common/utils/stdio/write.o \
-src/main.o
+src/ASF/common/utils/stdio/write.o
 
 OBJS_AS_ARGS +=  \
 src/ASF/avr32/drivers/flashc/flashc.o \
 src/ASF/avr32/drivers/gpio/gpio.o \
-src/include/Timer2018.o \
-src/include/USB2018.o \
+src/myfiles/GPIO2018.o \
+src/myfiles/main.o \
+src/myfiles/Menu2018.o \
+src/myfiles/Timer2018.o \
+src/myfiles/USB2018.o \
 src/ASF/avr32/drivers/pm/pm_uc3c.o \
 src/ASF/avr32/drivers/pm/power_clocks_lib.o \
 src/ASF/avr32/drivers/scif/scif_uc3c.o \
@@ -159,14 +166,16 @@ src/ASF/common/services/usb/class/cdc/device/udi_cdc_desc.o \
 src/ASF/common/services/usb/udc/udc.o \
 src/ASF/common/utils/stdio/read.o \
 src/ASF/common/utils/stdio/stdio_usb/stdio_usb.o \
-src/ASF/common/utils/stdio/write.o \
-src/main.o
+src/ASF/common/utils/stdio/write.o
 
 C_DEPS +=  \
 src/ASF/avr32/drivers/flashc/flashc.d \
 src/ASF/avr32/drivers/gpio/gpio.d \
-src/include/Timer2018.d \
-src/include/USB2018.d \
+src/myfiles/GPIO2018.d \
+src/myfiles/main.d \
+src/myfiles/Menu2018.d \
+src/myfiles/Timer2018.d \
+src/myfiles/USB2018.d \
 src/ASF/avr32/drivers/pm/pm_uc3c.d \
 src/ASF/avr32/drivers/pm/power_clocks_lib.d \
 src/ASF/avr32/drivers/scif/scif_uc3c.d \
@@ -186,14 +195,16 @@ src/ASF/common/services/usb/class/cdc/device/udi_cdc_desc.d \
 src/ASF/common/services/usb/udc/udc.d \
 src/ASF/common/utils/stdio/read.d \
 src/ASF/common/utils/stdio/stdio_usb/stdio_usb.d \
-src/ASF/common/utils/stdio/write.d \
-src/main.d
+src/ASF/common/utils/stdio/write.d
 
 C_DEPS_AS_ARGS +=  \
 src/ASF/avr32/drivers/flashc/flashc.d \
 src/ASF/avr32/drivers/gpio/gpio.d \
-src/include/Timer2018.d \
-src/include/USB2018.d \
+src/myfiles/GPIO2018.d \
+src/myfiles/main.d \
+src/myfiles/Menu2018.d \
+src/myfiles/Timer2018.d \
+src/myfiles/USB2018.d \
 src/ASF/avr32/drivers/pm/pm_uc3c.d \
 src/ASF/avr32/drivers/pm/power_clocks_lib.d \
 src/ASF/avr32/drivers/scif/scif_uc3c.d \
@@ -213,8 +224,7 @@ src/ASF/common/services/usb/class/cdc/device/udi_cdc_desc.d \
 src/ASF/common/services/usb/udc/udc.d \
 src/ASF/common/utils/stdio/read.d \
 src/ASF/common/utils/stdio/stdio_usb/stdio_usb.d \
-src/ASF/common/utils/stdio/write.d \
-src/main.d
+src/ASF/common/utils/stdio/write.d
 
 OUTPUT_FILE_PATH +=HelloWorld.elf
 
@@ -275,6 +285,10 @@ LINKER_SCRIPT_DEP+=
 
 
 
+
+
+
+
 src/ASF/avr32/drivers/flashc/%.o: ../src/ASF/avr32/drivers/flashc/%.c
 	@echo Building file: $<
 	@echo Invoking: AVR32/GNU C Compiler : 4.4.7
@@ -289,7 +303,7 @@ src/ASF/avr32/drivers/gpio/%.o: ../src/ASF/avr32/drivers/gpio/%.c
 	@echo Finished building: $<
 	
 
-src/include/%.o: ../src/include/%.c
+src/myfiles/%.o: ../src/myfiles/%.c
 	@echo Building file: $<
 	@echo Invoking: AVR32/GNU C Compiler : 4.4.7
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr32\avr32-gnu-toolchain\bin\avr32-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=USER_BOARD -DUDD_ENABLE  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\UC3C_DFP\1.0.49\include\AT32UC3C2128C" -I"../src/ASF/common/boards" -I"../src/ASF/avr32/utils/preprocessor" -I"../src/ASF/avr32/utils" -I"../src/ASF/common/utils" -I"../src/ASF/avr32/drivers/intc" -I"../src/ASF/common/boards/user_board" -I"../src" -I"../src/config" -I"../src/ASF/avr32/drivers/cpu/cycle_counter" -I"../src/ASF/avr32/drivers/flashc" -I"../src/ASF/avr32/drivers/gpio" -I"../src/ASF/common/services/clock" -I"../src/ASF/common/services/delay" -I"../src/ASF/avr32/drivers/pm" -I"../src/ASF/avr32/drivers/scif" -I"../src/ASF/avr32/drivers/usbc" -I"../src/ASF/common/services/sleepmgr" -I"../src/ASF/common/services/usb" -I"../src/ASF/common/services/usb/class/cdc" -I"../src/ASF/common/services/usb/class/cdc/device" -I"../src/ASF/common/services/usb/udc" -I"../src/ASF/common/utils/stdio/stdio_usb" -I"../src/ASF/avr32/drivers/tc"  -O1 -fdata-sections -ffunction-sections -masm-addr-pseudos -g3 -Wall -mpart=uc3c2128c -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -mno-cond-exec-before-reload -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -374,13 +388,6 @@ src/ASF/common/utils/stdio/%.o: ../src/ASF/common/utils/stdio/%.c
 	
 
 src/ASF/common/utils/stdio/stdio_usb/%.o: ../src/ASF/common/utils/stdio/stdio_usb/%.c
-	@echo Building file: $<
-	@echo Invoking: AVR32/GNU C Compiler : 4.4.7
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr32\avr32-gnu-toolchain\bin\avr32-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=USER_BOARD -DUDD_ENABLE  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\UC3C_DFP\1.0.49\include\AT32UC3C2128C" -I"../src/ASF/common/boards" -I"../src/ASF/avr32/utils/preprocessor" -I"../src/ASF/avr32/utils" -I"../src/ASF/common/utils" -I"../src/ASF/avr32/drivers/intc" -I"../src/ASF/common/boards/user_board" -I"../src" -I"../src/config" -I"../src/ASF/avr32/drivers/cpu/cycle_counter" -I"../src/ASF/avr32/drivers/flashc" -I"../src/ASF/avr32/drivers/gpio" -I"../src/ASF/common/services/clock" -I"../src/ASF/common/services/delay" -I"../src/ASF/avr32/drivers/pm" -I"../src/ASF/avr32/drivers/scif" -I"../src/ASF/avr32/drivers/usbc" -I"../src/ASF/common/services/sleepmgr" -I"../src/ASF/common/services/usb" -I"../src/ASF/common/services/usb/class/cdc" -I"../src/ASF/common/services/usb/class/cdc/device" -I"../src/ASF/common/services/usb/udc" -I"../src/ASF/common/utils/stdio/stdio_usb" -I"../src/ASF/avr32/drivers/tc"  -O1 -fdata-sections -ffunction-sections -masm-addr-pseudos -g3 -Wall -mpart=uc3c2128c -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -mno-cond-exec-before-reload -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-src/%.o: ../src/%.c
 	@echo Building file: $<
 	@echo Invoking: AVR32/GNU C Compiler : 4.4.7
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr32\avr32-gnu-toolchain\bin\avr32-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=USER_BOARD -DUDD_ENABLE  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\UC3C_DFP\1.0.49\include\AT32UC3C2128C" -I"../src/ASF/common/boards" -I"../src/ASF/avr32/utils/preprocessor" -I"../src/ASF/avr32/utils" -I"../src/ASF/common/utils" -I"../src/ASF/avr32/drivers/intc" -I"../src/ASF/common/boards/user_board" -I"../src" -I"../src/config" -I"../src/ASF/avr32/drivers/cpu/cycle_counter" -I"../src/ASF/avr32/drivers/flashc" -I"../src/ASF/avr32/drivers/gpio" -I"../src/ASF/common/services/clock" -I"../src/ASF/common/services/delay" -I"../src/ASF/avr32/drivers/pm" -I"../src/ASF/avr32/drivers/scif" -I"../src/ASF/avr32/drivers/usbc" -I"../src/ASF/common/services/sleepmgr" -I"../src/ASF/common/services/usb" -I"../src/ASF/common/services/usb/class/cdc" -I"../src/ASF/common/services/usb/class/cdc/device" -I"../src/ASF/common/services/usb/udc" -I"../src/ASF/common/utils/stdio/stdio_usb" -I"../src/ASF/avr32/drivers/tc"  -O1 -fdata-sections -ffunction-sections -masm-addr-pseudos -g3 -Wall -mpart=uc3c2128c -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -mno-cond-exec-before-reload -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

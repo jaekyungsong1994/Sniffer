@@ -7,6 +7,7 @@
 #include <conf_board.h>
 #include <asf.h>
 
+#include "Timer2018.h"
 #include "Menu2018.h"
 
 static uint32_t string_to_pin(char *chr) {
@@ -162,7 +163,10 @@ void menu_interface(){
 					printf("Invalid command.\n\r");
 					return;
 				}
-			} else {
+			} else if(!strcmp(token, "TIME")) {
+				printf("Time: %d s\n\r", tick_time() / 10);
+			}
+			else {
 				// Invalid command
 				printf("Token: %s\n\r", token);
 			}

@@ -22,7 +22,6 @@ int main (void)
 	
 	// initialize and set up interrupts
 	INTC_init_interrupts();
-	//INTC_register_interrupt(&tc_irq, AVR32_TC0_IRQ0, AVR32_INTC_INT1);
 	
 	/* Insert system clock initialization code here (sysclk_init()). */
 	board_init();
@@ -35,25 +34,26 @@ int main (void)
 	stdio_usb_enable();
 	
 	// enable TC and USB clock
-	sysclk_enable_peripheral_clock(EXAMPLE_TC);
+	sysclk_enable_peripheral_clock(TC_MOD);
 	sysclk_enable_peripheral_clock(&AVR32_USBC);
 	
 	// create buffer
 	char usb_buffer[BUFFER_SIZE_TEMP];
 	
-	// initialize TC
-	//tc_init();
-	
 	// GPIO set up
 	gpio_init();
+	
+	// TC set up
+	tc_init();
 	
 	// enable interrupts
 	cpu_irq_enable();
 	
 	// gpio_enable_module - used to assign pins to modules eg. UART
-	
 	while(1) {
 		menu_interface();
+		
+		// printf("hello there!\n\r"); // Spamming printf seems to cause COM communication to fail
 		delay_ms(1); // USB seems to need at least a small delay
 	}
 	

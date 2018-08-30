@@ -10,8 +10,9 @@
 #define USB2018_H_
 
 #include "stdio_usb.h"
+#include "ctype.h"
 
-#define BUFFER_SIZE (50)
+#define BUFFER_SIZE_TEMP (50)
 
 int read_usb_chars(char *ch);
 

@@ -6,9 +6,15 @@ src\ASF\avr32\drivers\flashc\flashc.c
 
 src\ASF\avr32\drivers\gpio\gpio.c
 
-src\include\Timer2018.c
+src\myfiles\GPIO2018.c
 
-src\include\USB2018.c
+src\myfiles\main.c
+
+src\myfiles\Menu2018.c
+
+src\myfiles\Timer2018.c
+
+src\myfiles\USB2018.c
 
 src\ASF\avr32\drivers\pm\pm_uc3c.c
 
@@ -49,6 +55,4 @@ src\ASF\common\utils\stdio\read.c
 src\ASF\common\utils\stdio\stdio_usb\stdio_usb.c
 
 src\ASF\common\utils\stdio\write.c
-
-src\main.c
 
