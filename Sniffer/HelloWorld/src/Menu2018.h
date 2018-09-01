@@ -20,6 +20,7 @@ Commands:
 	- GPIO,n,PUD	: GPIO n has no pull up
 	- GPIO,n,OCE	: GPIO n is open collector
 	- GPIO,n,OCD	: GPIO n is push-pull
+	- GPIO,n,OCT
 	- GPIO,n,HIGH	: GPIO n outputs high
 	- GPIO,n,LOW	: GPIO n outputs low
 	- GPIO,n,TOGGLE	: GPIO n outputs low
@@ -35,9 +36,19 @@ Commands:
 
 #define BUFFER_SIZE 50
 
+// Argument struct definition
+// holds arguments for passing to functions
+typedef struct {
+	int arg1;
+	int arg2;
+} arg_t;
+
+
+#define DELIMIETER ", \r\n"
 // Keywords General
 #define INT_ENABLE "INTE"
 #define INT_DISABLE "INTD"
+#define TERMINATE "\0"
 
 // Keywords GPIO
 #define MODULE_GPIO "GPIO"
@@ -52,8 +63,6 @@ Commands:
 #define GPIO_OC_LOW "OCL"
 #define GPIO_OC_TOGGLE "OCT"
 
-static uint32_t string_to_pin(char *chr);
-static char pin_to_string(uint32_t pin);
-void menu_interface();
+void menu_interface(char *);
 
 #endif /* MENU2018_H_ */

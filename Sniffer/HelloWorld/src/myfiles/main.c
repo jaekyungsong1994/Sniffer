@@ -50,8 +50,13 @@ int main (void)
 	cpu_irq_enable();
 	
 	// gpio_enable_module - used to assign pins to modules eg. UART
+	char input_buffer[BUFFER_SIZE];
 	while(1) {
-		menu_interface();
+		//menu_interface();
+		if(get_line(usb_buffer) > 0) {
+			menu_interface(usb_buffer);
+		}
+		
 		
 		// printf("hello there!\n\r"); // Spamming printf seems to cause COM communication to fail
 		delay_ms(1); // USB seems to need at least a small delay

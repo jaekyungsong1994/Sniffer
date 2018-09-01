@@ -22,10 +22,21 @@
 #define GPIO_9_VECT AVR32_GPIO_IRQ_9
 
 static void gpio_int_handler();
-static void gpio_int_handler_2();
-static void gpio_int_handler_3();
 
 void gpio_init();
+
+void gpio_inte (arg_t);
+void gpio_intd (arg_t);	
+void gpio_mode_in (arg_t);
+void gpio_mode_out (arg_t);
+void gpio_output_high (arg_t);
+void gpio_output_low (arg_t);
+void gpio_output_toggle (arg_t);
+void gpio_pu_enable (arg_t);
+void gpio_pu_disable (arg_t);
+void gpio_oc_high (arg_t);
+void gpio_oc_low (arg_t);
+void gpio_oc_toggle (arg_t);
 
 
 
