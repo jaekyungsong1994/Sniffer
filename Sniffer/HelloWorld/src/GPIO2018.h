@@ -9,6 +9,11 @@
 #define GPIO2018_H_
 
 #include <stdint.h>
+#include <user_board.h>
+#include <gpio.h>			// For general input/output
+#include <asf.h>			// To use ASF
+
+#include "Menu2018.h"
 
 #define GPIO_0_VECT AVR32_GPIO_IRQ_0
 #define GPIO_1_VECT AVR32_GPIO_IRQ_1
@@ -28,7 +33,7 @@ void gpio_init();
 void gpio_inte (arg_t);
 void gpio_intd (arg_t);	
 void gpio_mode_in (arg_t);
-void gpio_mode_out (arg_t);
+void gpio_read (arg_t);
 void gpio_output_high (arg_t);
 void gpio_output_low (arg_t);
 void gpio_output_toggle (arg_t);

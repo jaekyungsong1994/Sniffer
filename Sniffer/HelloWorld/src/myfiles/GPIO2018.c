@@ -4,13 +4,7 @@
  * Created: 8/13/2018 4:31:05 PM
  *  Author: jaekyung
  */ 
-#include <user_board.h>
-#include <gpio.h>			// For general input/output
-#include <asf.h>			// To use ASF
-
 #include "GPIO2018.h"
-#include "Menu2018.h"
-
 
 void gpio_init()
 {
@@ -97,17 +91,16 @@ void gpio_mode_in (arg_t arg){
 		return;
 	}
 	gpio_configure_pin(pin, GPIO_DIR_INPUT);
-	printf("GPIO%d = %s.\n\r", arg.arg1, gpio_get_pin_value(pin) ? "HIGH" : "LOW");
 	return;
 }
 
-void gpio_mode_out (arg_t arg){
+void gpio_read (arg_t arg){
 	uint32_t pin = int_to_pin(arg.arg1);
 	if(pin < 0){
 		printf("Invalid pin (%d).\n\r", arg.arg1);
 		return;
 	}
-	gpio_configure_pin(pin, GPIO_DIR_OUTPUT);
+	printf("GPIO%d = %s.\n\r", arg.arg1, gpio_get_pin_value(pin) ? "HIGH" : "LOW");
 	return;
 }
 

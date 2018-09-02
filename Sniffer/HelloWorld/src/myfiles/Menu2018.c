@@ -11,10 +11,10 @@
 #include "Timer2018.h"
 #include "Menu2018.h"
 	
-// GPIO array
+// GPIO Arrays
 char* gpio_cmd[] = {
 	INT_ENABLE, INT_DISABLE,
-	GPIO_MODE_IN, GPIO_MODE_OUT, 
+	GPIO_MODE_IN, GPIO_READ, 
 	GPIO_OUTPUT_HIGH, GPIO_OUTPUT_LOW,GPIO_OUTPUT_TOGGLE,
 	GPIO_PU_ENABLE,GPIO_PU_DISABLE,
 	GPIO_OC_HIGH,GPIO_OC_LOW,GPIO_OC_TOGGLE, 
@@ -22,16 +22,30 @@ char* gpio_cmd[] = {
 
 void (* gpio_func[]) (arg_t arg) = {
 	gpio_inte, gpio_intd, 
-	gpio_mode_in, gpio_mode_out, 
+	gpio_mode_in, gpio_read, 
 	gpio_output_high, gpio_output_low, gpio_output_toggle, 
 	gpio_pu_enable, gpio_pu_disable, 
 	gpio_oc_high, gpio_oc_low, gpio_oc_toggle
 };
 
+// TC Arrays
+
+char* tc_cmd[] = {
+	INT_ENABLE, INT_DISABLE,
+	TC_GET_TIME, TC_SET_TIME,
+	TC_GET_INC, TC_SET_INC,
+};
+
+void (* tc_func[]) (arg_t arg) = {
+	tc_inte, tc_intd,
+	tc_get_time, tc_set_time,
+	tc_get_increment, tc_set_increment
+};
+
 // Module arrays
-char* mod_string[] = {MODULE_GPIO, "TC", "SPI", "I2C", "UART", "422", "CAN", "ADC", "DAC", "PWM", TERMINATE};
-char** cmd_string[] = {gpio_cmd, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL};
-void (** func_array[]) (arg_t) = {gpio_func, NULL};
+char* mod_string[] = {MODULE_GPIO, MODULE_TC, "SPI", "I2C", "UART", "422", "CAN", "ADC", "DAC", "PWM", TERMINATE};
+char** cmd_string[] = {gpio_cmd, tc_cmd, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL};
+void (** func_array[]) (arg_t) = {gpio_func, tc_func};
 
 
 static int string_search_array(char* key, char** array) {

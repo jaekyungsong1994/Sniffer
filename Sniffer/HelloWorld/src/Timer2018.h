@@ -10,6 +10,12 @@
 #define TIMER2018_H_
 
 #include <stdint.h>
+#include <user_board.h>
+#include <gpio.h>			// For general input/output
+#include <asf.h>			// To use ASF
+#include <tc.h>
+
+#include "Menu2018.h"
 
 // TC Channel
 // TC0 uses Peripheral Bus C clk, while TC1 uses PBA clk
@@ -25,8 +31,13 @@
 
 #define TC_MOD (&AVR32_TC0)
 
-int tick_time();
 void tc_init();
+void tc_get_time(arg_t);
+void tc_set_time(arg_t);
+void tc_get_increment(arg_t);
+void tc_set_increment(arg_t);
+void tc_inte(arg_t);
+void tc_intd(arg_t);
 
 
 

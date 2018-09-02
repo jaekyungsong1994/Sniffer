@@ -5,10 +5,6 @@
  *  Author: jaekyung
  */ 
 #include "Timer2018.h"
-#include <user_board.h>
-#include <gpio.h>			// For general input/output
-#include <asf.h>			// To use ASF
-#include <tc.h>
 
 int tick = 0;
 
@@ -18,13 +14,9 @@ __attribute__((__interrupt__)) static void tc_int_handler(){
 	tc_read_sr(TC_MOD, TC_CHANNEL);
 }
 
-int tick_time() {
-	return tick;
-}
-
 void tc_init()
 {
-	// Assign interupt handler
+	// Assign interrupt handler
 	INTC_register_interrupt(&tc_int_handler, TC_IRQ, TC_IRQ_PRIORITY);
 	
 	// Options for waveform generation.
@@ -91,4 +83,52 @@ void tc_init()
 	
 	// Start the timer/counter.
 	tc_start(TC_MOD, TC_CHANNEL);
+}
+
+void tc_get_time(arg_t arg){
+	printf("Time = %d\n\r", tick);
+}
+
+void tc_set_time(arg_t arg){
+	tick = arg.arg1;
+}
+
+void tc_get_increment(arg_t arg){
+	// Stop timer, clear counter, set new threshold and then resume counter
+	printf("Timer Size = %d\n\r", tc_read_rc(TC_MOD, TC_CHANNEL));
+}
+
+void tc_set_increment(arg_t arg){
+	// Stop timer, clear counter, set new threshold and then resume counter
+	tc_stop(TC_MOD, TC_CHANNEL);
+	tc_software_trigger(TC_MOD, TC_CHANNEL);
+	tc_write_rc(TC_MOD, TC_CHANNEL, arg.arg1);
+	tc_start(TC_MOD, TC_CHANNEL);
+}
+
+void tc_inte(arg_t arg){
+	static const tc_interrupt_t tc_interrupt = {
+		.etrgs = 0,
+		.ldrbs = 0,
+		.ldras = 0,
+		.cpcs  = 1,
+		.cpbs  = 0,
+		.cpas  = 0,
+		.lovrs = 0,
+		.covfs = 0
+	};
+	tc_configure_interrupts(TC_MOD, TC_CHANNEL, &tc_interrupt);
+}
+void tc_intd(arg_t arg){
+	static const tc_interrupt_t tc_interrupt = {
+		.etrgs = 0,
+		.ldrbs = 0,
+		.ldras = 0,
+		.cpcs  = 0,
+		.cpbs  = 0,
+		.cpas  = 0,
+		.lovrs = 0,
+		.covfs = 0
+	};
+	tc_configure_interrupts(TC_MOD, TC_CHANNEL, &tc_interrupt);
 }

@@ -50,10 +50,13 @@ typedef struct {
 #define INT_DISABLE "INTD"
 #define TERMINATE "\0"
 
-// Keywords GPIO
+// Modules
 #define MODULE_GPIO "GPIO"
+#define MODULE_TC "TIMER"
+
+// GPIO Commands
 #define GPIO_MODE_IN "IN"
-#define GPIO_MODE_OUT "OUT"
+#define GPIO_READ "READ"
 #define GPIO_OUTPUT_HIGH "HIGH"
 #define GPIO_OUTPUT_LOW "LOW"
 #define GPIO_OUTPUT_TOGGLE "TOGGLE"
@@ -62,6 +65,12 @@ typedef struct {
 #define GPIO_OC_HIGH "OCH"
 #define GPIO_OC_LOW "OCL"
 #define GPIO_OC_TOGGLE "OCT"
+
+// Timer Commands
+#define TC_GET_TIME "GETTIME"
+#define TC_SET_TIME "SETTIME"
+#define TC_GET_INC "GETINC"
+#define TC_SET_INC "SETINC"
 
 void menu_interface(char *);
 
