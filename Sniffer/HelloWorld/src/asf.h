@@ -97,6 +97,9 @@
 // From module: TC - Timer/Counter
 #include <tc.h>
 
+// From module: USART - Universal Synchronous/Asynchronous Receiver/Transmitter
+#include <usart.h>
+
 // From module: USB - Universial Serial Bus driver (with sleep manager)
 #include <usbc_device.h>
 
