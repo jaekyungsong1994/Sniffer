@@ -12,10 +12,10 @@ Modules are: ADC, GPIO, DAC, UART0, UART1, SPI, I2C, PWM, and CAN
 
 Commands:
 - GPIO:
-	- GPIO,n,IN		: Set GPIO n as input
+	- GPIO,n,IN		: Set GPIO n as input (all GPIO are input by default)
 	- GPIO,n,OUT	: Set GPIO n as output
 	- GPIO,n,INTE	: enable GPIO n interrupt
-	- GPIO,n,INTD	: disable GPIO n interrupt
+	- GPIO,n,INTD	: disable GPIO n interrupt (default)
 	- GPIO,n,PUE	: GPIO n has pull up
 	- GPIO,n,PUD	: GPIO n has no pull up
 	- GPIO,n,OCE	: GPIO n is open collector
@@ -24,14 +24,33 @@ Commands:
 	- GPIO,n,HIGH	: GPIO n outputs high
 	- GPIO,n,LOW	: GPIO n outputs low
 	- GPIO,n,TOGGLE	: GPIO n outputs low
+-TIMER
+	- TIMER, INTE		: Enable interrupt
+	- TIMER, INTD		: Disable interrupt (default)
+	- TIMER, GETTIME	: Get current counter value
+	- TIMER, SETTIME	: Set counter value
+	- TIMER, GETINC		: Get time between increments
+	- TIMER, SETINC		: Set time between increments (0.1 sec by default, 0.699 sec max)
+- USART:
+	- USART, INTE	: Enable interrupt
+	- USART, INTD	: Disable interrupt (default)
+	- USART, SERIAL	: Disable RS232 XCVR
+	- USART, RS232	: Enable RS232 XCVR
+	- USART, SEND	: Send message typed after command
+	- USART, FORMAT	: Format USART (8N1 by default)
 */
 
 #ifndef MENU2018_H_
 #define MENU2018_H_
 
+#include <asf.h>
+#include <conf_board.h>
 #include <stdio.h>
 #include <string.h>
 
+#include "GPIO2018.h"
+#include "Timer2018.h"
+#include "USART2018.h"
 #include "USB2018.h"
 
 #define BUFFER_SIZE 50
@@ -43,8 +62,8 @@ typedef struct {
 	int arg2;
 } arg_t;
 
-
 #define DELIMIETER ", \r\n"
+
 // Keywords General
 #define INT_ENABLE "INTE"
 #define INT_DISABLE "INTD"
@@ -53,6 +72,7 @@ typedef struct {
 // Modules
 #define MODULE_GPIO "GPIO"
 #define MODULE_TC "TIMER"
+#define MODULE_USART "USART"
 
 // GPIO Commands
 #define GPIO_MODE_IN "IN"
@@ -71,6 +91,12 @@ typedef struct {
 #define TC_SET_TIME "SETTIME"
 #define TC_GET_INC "GETINC"
 #define TC_SET_INC "SETINC"
+
+// USART Commands
+#define SERIAL "SERIAL"
+#define RS232 "RS232"
+#define SEND "SEND"
+#define FORMAT "FORMAT"
 
 void menu_interface(char *);
 

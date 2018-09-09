@@ -44,20 +44,14 @@ int main (void)
 	// enable interrupts
 	cpu_irq_enable();
 	
-	// gpio_enable_module - used to assign pins to modules eg. UART
-	char input_buffer[BUFFER_SIZE];
-	char char_buffer[BUFFER_SIZE];
-	printf("\n\r"); // helps prevent repeated chracaters coming up on console
+	printf("\n\r"); // helps reduce repeated characters coming up on console
 	while(1) {
 		//menu_interface();
 		if(get_line(usb_buffer) > 0) {
 			menu_interface(usb_buffer);
 		}
-// 		usart_write_line(USART_MOD, "hi");
-// 		usart_read_char(USART_MOD, char_buffer);
-// 		printf("Char: %s\n\r", char_buffer);	
-// 		delay_ms(999);
-		// printf("hello there!\n\r"); // Spamming printf seems to cause COM communication to fail
+		
+		usart_poll_read();
 		delay_ms(1); // USB seems to need at least a small delay
 	}
 	

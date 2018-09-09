@@ -4,11 +4,6 @@
  * Created: 8/13/2018 5:18:06 PM
  *  Author: jaekyung
  */ 
-#include <conf_board.h>
-#include <asf.h>
-
-#include "GPIO2018.h"
-#include "Timer2018.h"
 #include "Menu2018.h"
 	
 // GPIO Arrays
@@ -29,11 +24,11 @@ void (* gpio_func[]) (arg_t arg) = {
 };
 
 // TC Arrays
-
 char* tc_cmd[] = {
 	INT_ENABLE, INT_DISABLE,
 	TC_GET_TIME, TC_SET_TIME,
 	TC_GET_INC, TC_SET_INC,
+	TERMINATE
 };
 
 void (* tc_func[]) (arg_t arg) = {
@@ -42,10 +37,21 @@ void (* tc_func[]) (arg_t arg) = {
 	tc_get_increment, tc_set_increment
 };
 
+// USART Arrays
+char* usart_cmd[] = {
+	INT_ENABLE, INT_DISABLE, SERIAL,
+	RS232, SEND, FORMAT, TERMINATE
+};
+
+void (* usart_func[]) (arg_t arg) = {
+	usart_inte, usart_intd, usart_serial,
+	usart_rs232, usart_send, usart_format
+};
+
 // Module arrays
-char* mod_string[] = {MODULE_GPIO, MODULE_TC, "SPI", "I2C", "UART", "422", "CAN", "ADC", "DAC", "PWM", TERMINATE};
-char** cmd_string[] = {gpio_cmd, tc_cmd, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL};
-void (** func_array[]) (arg_t) = {gpio_func, tc_func};
+char* mod_string[] = {MODULE_GPIO, MODULE_TC, MODULE_USART, TERMINATE};
+char** cmd_string[] = {gpio_cmd, tc_cmd, usart_cmd, NULL, NULL, NULL, NULL, NULL, NULL, NULL};
+void (** func_array[]) (arg_t) = {gpio_func, tc_func, usart_func};
 
 
 static int string_search_array(char* key, char** array) {

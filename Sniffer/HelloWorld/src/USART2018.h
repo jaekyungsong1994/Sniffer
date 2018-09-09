@@ -13,6 +13,8 @@
 #include "Menu2018.h"
 
 #define USART_MOD (&AVR32_USART1)
+#define USART_VECT AVR32_USART1_IRQ
+
 void usart_init();
 
 void usart_inte(arg_t);
@@ -21,7 +23,6 @@ void usart_serial(arg_t);
 void usart_rs232(arg_t);
 void usart_send(arg_t);
 void usart_format(arg_t);
-
-void usart_helloworld();
+void usart_poll_read();
 
 #endif
