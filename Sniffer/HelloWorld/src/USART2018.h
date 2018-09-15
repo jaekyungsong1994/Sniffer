@@ -16,6 +16,7 @@
 #define USART_VECT AVR32_USART1_IRQ
 
 void usart_init();
+void usart_poll();
 
 void usart_inte(arg_t);
 void usart_intd(arg_t);

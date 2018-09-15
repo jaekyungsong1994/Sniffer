@@ -6,6 +6,41 @@
  */ 
 #include "GPIO2018.h"
 
+static char pin_to_char(int pin);
+
+int gpio_poll_flag = 0;
+int gpio_int_flag[] = {0, 0, 0, 0}; 
+
+__attribute__((__interrupt__)) static void gpio_int_handler(){
+	// Iterate through ports and get all interrupt flags, then clear flags
+	// Set poll flag
+	
+	for(int cur_port = 0; cur_port < 4; cur_port++) {
+		gpio_int_flag[cur_port] = AVR32_GPIO.port[cur_port].ifr;
+		AVR32_GPIO.port[cur_port].ifrc = 0xFFFFFFFF;
+	}
+	
+	gpio_poll_flag = 1;
+}
+
+void gpio_poll(){
+	if(gpio_poll_flag){
+		// interrupt was triggered
+		int cur_reg = 0;
+		for(int cur_port = 0; cur_port < 4; cur_port++){
+			cur_reg = gpio_int_flag[cur_port];
+			for(int cur_pin = 0; cur_pin < 32; cur_pin++){
+				// see if specific pin on specific port has flag set
+				if(cur_reg & (1 << cur_pin)){
+					int gpio_pin = (cur_port << 5) + cur_pin;
+					printf("GPIO%c was triggered. Currently %s.\r\n", pin_to_char(gpio_pin), gpio_get_pin_value(gpio_pin) ? "HIGH" : "LOW");
+				}
+			}
+		}
+	}
+	gpio_poll_flag = 0;
+}
+
 void gpio_init()
 {
 	// set all pins as inputs
@@ -61,26 +96,31 @@ static uint32_t int_to_pin(int pin) {
 	}
 }
 
-__attribute__((__interrupt__)) static void gpio_int_handler(){
-	// General interrupt handler for GPIO interrupt
-	// iterates through GPIOs looking for interrupts
-	uint32_t pin = -1;
-	int pin_mask = 0;
-	for(int i = 0; i < 10; i++) {
-		pin = int_to_pin(i);
-		if(pin < 0)
-		return;
+static char pin_to_char(int pin){
+	switch(pin){
+		case GPIO0:
+			return '0';
+		case GPIO1:
+			return '1';
+		case GPIO2:
+			return '2';
+		case GPIO3:
+			return '3';
+		case GPIO4:
+			return '4';
+		case GPIO5:
+			return '5';
+		case GPIO6:
+			return '6';
+		case GPIO7:
+			return '7';
+		case GPIO8:
+			return '8';
+		case GPIO9:
+			return '9';
+		default:
+			return '\0';
 		
-		// get pin mask; eg. pin 2 is 0b100
-		pin_mask = 1 << (pin & 0x1F);
-		
-		// check if interrupt flag is set
-		if(AVR32_GPIO.port[pin >> 5].ifr & pin_mask) {
-			printf("GPIO%d was triggered. Currently %s.\n\r", i, gpio_get_pin_value(pin) ? "high" : "low");
-			
-			// clear flag
-			AVR32_GPIO.port[pin >> 5].ifrc = pin_mask;
-		}
 	}
 }
 

@@ -6,6 +6,8 @@ src\ASF\avr32\drivers\flashc\flashc.c
 
 src\ASF\avr32\drivers\gpio\gpio.c
 
+src\ASF\avr32\drivers\spi\spi.c
+
 src\ASF\avr32\drivers\usart\usart.c
 
 src\myfiles\GPIO2018.c
@@ -13,6 +15,8 @@ src\myfiles\GPIO2018.c
 src\myfiles\main.c
 
 src\myfiles\Menu2018.c
+
+src\myfiles\SPI2018.c
 
 src\myfiles\Timer2018.c
 

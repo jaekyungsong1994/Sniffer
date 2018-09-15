@@ -59,7 +59,7 @@ void usart_init(){
 	
 }
 
-void usart_poll_read(){
+void usart_poll(){
 	if(usart_nl_flag) {
 		printf("USART:" );
 		for(int i = 0; i < usart_rx_position; i++) {

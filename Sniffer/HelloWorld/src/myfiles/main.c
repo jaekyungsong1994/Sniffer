@@ -6,6 +6,7 @@
 #include "GPIO2018.h"
 #include "Menu2018.h"
 #include "USART2018.h"
+#include "SPI2018.h"
 
 int print_time = 0;
 
@@ -21,7 +22,10 @@ int main (void)
 	board_init();
 	sleepmgr_init();
 	sysclk_init();
+	
+	
 	usart_init();
+	spi_init();
 	
 	// starts and enables for USB
 	udc_start();
@@ -44,6 +48,8 @@ int main (void)
 	// enable interrupts
 	cpu_irq_enable();
 	
+	uint16_t spi_send_data = 0, spi_receive_data;
+	
 	printf("\n\r"); // helps reduce repeated characters coming up on console
 	while(1) {
 		//menu_interface();
@@ -51,7 +57,14 @@ int main (void)
 			menu_interface(usb_buffer);
 		}
 		
-		usart_poll_read();
+		usart_poll();
+		gpio_poll();
+		
+// 		spi_write(SPI_MOD, spi_send_data);
+// 		spi_receive_data = SPI_MOD->rdr;
+// 		printf("Sent %d, received %d\r\n", spi_send_data, spi_receive_data);
+// 		spi_send_data++;
+// 		delay_ms(999);
 		delay_ms(1); // USB seems to need at least a small delay
 	}
 	

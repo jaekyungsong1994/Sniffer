@@ -26,9 +26,8 @@
 #define GPIO_8_VECT AVR32_GPIO_IRQ_8
 #define GPIO_9_VECT AVR32_GPIO_IRQ_9
 
-static void gpio_int_handler();
-
 void gpio_init();
+void gpio_poll();
 
 void gpio_inte (arg_t);
 void gpio_intd (arg_t);	
