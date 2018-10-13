@@ -53,6 +53,7 @@
 //#define CONFIG_SYSCLK_INIT_HSBMASK  (1 << SYSCLK_MDMA_HSB)
 
 // Choose 12 MHz oscillator, OSC0
+// 12 MHz (on board osc. frq) too slow for dealing with SPI interrupts
 #define CONFIG_SYSCLK_SOURCE        SYSCLK_SRC_OSC0
 
 /* Fbus = Fsys / (2 ^ BUS_div) */
@@ -68,9 +69,8 @@
 /* Fusb = Fsys / USB_div */
 #define CONFIG_USBCLK_DIV             1
 
-#define CONFIG_PLL0_SOURCE            PLL_SRC_OSC0
-
 /* Fpll0 = (Fclk * PLL_mul) / PLL_div */
+#define CONFIG_PLL0_SOURCE            PLL_SRC_OSC0
 #define CONFIG_PLL0_MUL               (48000000UL / BOARD_OSC0_HZ)
 #define CONFIG_PLL0_DIV               1
 
@@ -78,6 +78,7 @@
 //#define CONFIG_PLL1_SOURCE          PLL_SRC_OSC0
 
 /* Fpll1 = (Fclk * PLL_mul) / PLL_div */
+#define CONFIG_PLL1_SOURCE            PLL_SRC_OSC0
 #define CONFIG_PLL1_MUL               (48000000UL / BOARD_OSC0_HZ)
 #define CONFIG_PLL1_DIV               1
 

@@ -39,8 +39,11 @@ void (* tc_func[]) (arg_t arg) = {
 
 // USART Arrays
 char* usart_cmd[] = {
-	INT_ENABLE, INT_DISABLE, SERIAL,
-	RS232, SEND, FORMAT, TERMINATE
+	INT_ENABLE, INT_DISABLE, 
+	USART_SERIAL, USART_RS232, 
+	USART_SEND, 
+	USART_FORMAT, 
+	TERMINATE
 };
 
 void (* usart_func[]) (arg_t arg) = {
@@ -48,10 +51,26 @@ void (* usart_func[]) (arg_t arg) = {
 	usart_rs232, usart_send, usart_format
 };
 
+// SPI Arrays
+char* spi_cmd[] = {
+	INT_ENABLE, INT_DISABLE, 
+	SPI_WRITE, SPI_READ,
+	SPI_MASTER, SPI_SLAVE, 
+	SPI_SIZE, SPI_MODE, SPI_FREQ,
+	TERMINATE
+};
+
+void (* spi_func[]) (arg_t arg) = {
+	spi_inte, spi_intd,
+	spi_write_print, spi_read_print,
+	spi_master, spi_slave, 
+	spi_size, spi_mode, spi_freq
+};
+
 // Module arrays
-char* mod_string[] = {MODULE_GPIO, MODULE_TC, MODULE_USART, TERMINATE};
-char** cmd_string[] = {gpio_cmd, tc_cmd, usart_cmd, NULL, NULL, NULL, NULL, NULL, NULL, NULL};
-void (** func_array[]) (arg_t) = {gpio_func, tc_func, usart_func};
+char* mod_string[] = {MODULE_GPIO, MODULE_TC, MODULE_USART, MODULE_SPI TERMINATE};
+char** cmd_string[] = {gpio_cmd, tc_cmd, usart_cmd, spi_cmd, NULL, NULL, NULL, NULL, NULL, NULL};
+void (** func_array[]) (arg_t) = {gpio_func, tc_func, usart_func, spi_func};
 
 
 static int string_search_array(char* key, char** array) {

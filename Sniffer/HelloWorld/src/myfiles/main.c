@@ -35,6 +35,7 @@ int main (void)
 	// enable TC and USB clock
 	sysclk_enable_peripheral_clock(TC_MOD);
 	sysclk_enable_peripheral_clock(&AVR32_USBC);
+	sysclk_enable_peripheral_clock(SPI_MOD);
 	
 	// create buffer
 	char const usb_buffer[BUFFER_SIZE_TEMP];
@@ -44,6 +45,9 @@ int main (void)
 	
 	// TC set up
 	tc_init();
+	
+	// SPI set up
+	
 	
 	// enable interrupts
 	cpu_irq_enable();
@@ -56,15 +60,16 @@ int main (void)
 		if(get_line(usb_buffer) > 0) {
 			menu_interface(usb_buffer);
 		}
-		
 		usart_poll();
 		gpio_poll();
+		spi_poll();
 		
-// 		spi_write(SPI_MOD, spi_send_data);
-// 		spi_receive_data = SPI_MOD->rdr;
-// 		printf("Sent %d, received %d\r\n", spi_send_data, spi_receive_data);
-// 		spi_send_data++;
-// 		delay_ms(999);
+		//spi_selectChip(SPI_MOD, 0);
+		//spi_write(SPI_MOD, spi_send_data++);
+		//spi_unselectChip(SPI_MOD, 0);
+		//printf("Received %d\r\n", spi_get(SPI_MOD));
+		//
+		//delay_ms(999);
 		delay_ms(1); // USB seems to need at least a small delay
 	}
 	

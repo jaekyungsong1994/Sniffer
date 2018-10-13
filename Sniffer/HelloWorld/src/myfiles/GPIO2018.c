@@ -14,12 +14,10 @@ int gpio_int_flag[] = {0, 0, 0, 0};
 __attribute__((__interrupt__)) static void gpio_int_handler(){
 	// Iterate through ports and get all interrupt flags, then clear flags
 	// Set poll flag
-	
 	for(int cur_port = 0; cur_port < 4; cur_port++) {
 		gpio_int_flag[cur_port] = AVR32_GPIO.port[cur_port].ifr;
 		AVR32_GPIO.port[cur_port].ifrc = 0xFFFFFFFF;
 	}
-	
 	gpio_poll_flag = 1;
 }
 
@@ -66,7 +64,12 @@ void gpio_init()
 	INTC_register_interrupt(&gpio_int_handler, GPIO_7_VECT, AVR32_INTC_INT0);
 	INTC_register_interrupt(&gpio_int_handler, GPIO_8_VECT, AVR32_INTC_INT0);
 	INTC_register_interrupt(&gpio_int_handler, GPIO_9_VECT, AVR32_INTC_INT0);
-	
+	INTC_register_interrupt(&gpio_int_handler, GPIO_10_VECT, AVR32_INTC_INT0);
+	INTC_register_interrupt(&gpio_int_handler, GPIO_11_VECT, AVR32_INTC_INT0);
+	INTC_register_interrupt(&gpio_int_handler, GPIO_12_VECT, AVR32_INTC_INT0);
+	INTC_register_interrupt(&gpio_int_handler, GPIO_13_VECT, AVR32_INTC_INT0);
+	INTC_register_interrupt(&gpio_int_handler, GPIO_14_VECT, AVR32_INTC_INT0);
+	INTC_register_interrupt(&gpio_int_handler, GPIO_15_VECT, AVR32_INTC_INT0);
 }
 
 static uint32_t int_to_pin(int pin) {

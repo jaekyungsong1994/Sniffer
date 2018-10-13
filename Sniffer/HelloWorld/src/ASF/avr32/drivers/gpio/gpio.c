@@ -328,13 +328,13 @@ void gpio_configure_pin(uint32_t pin, uint32_t flags)
 
 	/* Select interrupt level for group */
 	if (flags & GPIO_INTERRUPT) {
-		if (flags & GPIO_BOTHEDGES) {
+		if ((flags & GPIO_BOTHEDGES) == GPIO_BOTHEDGES) {
 			gpio_port->imr0c = 1 << (pin & 0x1F);
 			gpio_port->imr1c = 1 << (pin & 0x1F);
-		} else if (flags & GPIO_RISING) {
+		} else if ((flags & GPIO_RISING) == GPIO_RISING) {
 			gpio_port->imr0s = 1 << (pin & 0x1F);
 			gpio_port->imr1c = 1 << (pin & 0x1F);
-		} else if (flags & GPIO_FALLING) {
+		} else if ((flags & GPIO_FALLING) == GPIO_FALLING) {
 			gpio_port->imr0c = 1 << (pin & 0x1F);
 			gpio_port->imr1s = 1 << (pin & 0x1F);
 		}

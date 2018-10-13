@@ -20,6 +20,16 @@
 #define NPCS3 3
 
 void spi_init();
+void spi_poll();
 
+void spi_inte(arg_t);
+void spi_intd(arg_t);
+void spi_write_print(arg_t);
+void spi_read_print(arg_t);
+void spi_master(arg_t);
+void spi_slave(arg_t);
+void spi_size(arg_t);
+void spi_mode(arg_t);
+void spi_freq(arg_t);
 
 #endif /* SPI2018_H_ */
