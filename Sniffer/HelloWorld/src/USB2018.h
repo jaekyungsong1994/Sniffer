@@ -14,6 +14,10 @@
 
 #define BUFFER_SIZE_TEMP (50)
 
+#define USB_MOD (&AVR32_USBC)
+#define USB_VECT AVR32_USBC_IRQ
+
+void usb_init();
 int read_usb_chars(char *ch);
 
 int get_line(char *buff_ptr);

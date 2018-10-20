@@ -6,6 +6,15 @@
  */ 
 #include "USB2018.h"
 
+void usb_init(){
+	
+	// Set up int handler
+	INTC_register_interrupt(&usb_int_handler, USB_VECT, AVR32_INTC_INT3);
+	
+	// Set up interrupt enables
+	//USB_MOD->
+}
+
 int read_usb_chars(char *ch) {
 	// grab single USB character if possible
 	// input: *ch - address to place gotten character

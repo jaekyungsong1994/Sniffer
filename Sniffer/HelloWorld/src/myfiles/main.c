@@ -22,14 +22,12 @@ int main (void)
 	board_init();
 	sleepmgr_init();
 	sysclk_init();
-	
-	
 	usart_init();
 	spi_init();
 	
 	// starts and enables for USB
-	udc_start();
 	stdio_usb_init();
+	udc_attach();
 	stdio_usb_enable();
 	
 	// enable TC and USB clock
@@ -46,30 +44,20 @@ int main (void)
 	// TC set up
 	tc_init();
 	
-	// SPI set up
-	
 	
 	// enable interrupts
 	cpu_irq_enable();
 	
-	uint16_t spi_send_data = 0, spi_receive_data;
-	
-	printf("\n\r"); // helps reduce repeated characters coming up on console
+	// Main code
 	while(1) {
 		//menu_interface();
 		if(get_line(usb_buffer) > 0) {
 			menu_interface(usb_buffer);
 		}
 		usart_poll();
-		gpio_poll();
+		gpio_poll(); // Moving clear flag in this poll to inside IF statement solved repeated characters issue
 		spi_poll();
 		
-		//spi_selectChip(SPI_MOD, 0);
-		//spi_write(SPI_MOD, spi_send_data++);
-		//spi_unselectChip(SPI_MOD, 0);
-		//printf("Received %d\r\n", spi_get(SPI_MOD));
-		//
-		//delay_ms(999);
 		delay_ms(1); // USB seems to need at least a small delay
 	}
 	

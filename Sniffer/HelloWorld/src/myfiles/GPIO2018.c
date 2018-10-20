@@ -35,8 +35,8 @@ void gpio_poll(){
 				}
 			}
 		}
+		gpio_poll_flag = 0;
 	}
-	gpio_poll_flag = 0;
 }
 
 void gpio_init()
